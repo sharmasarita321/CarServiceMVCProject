@@ -1,0 +1,72 @@
+﻿@model  IEnumerable<CarServiceMVCProject.Models.ApplicationUser>
+@{
+    ViewBag.Title = "CUSTOMERS";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<br />
+
+
+@Html.ActionLink("New Customer", "AddCustomerForm")
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
+{
+    <p style="color:white; padding-left:800px ">
+            Search:
+            @Html.RadioButton("option", "FirstName")Name &nbsp
+            @Html.RadioButton("option", "Email")Email &nbsp
+            @Html.RadioButton("option", "PhoneNumber")Phone
+        </p>
+                <p style="padding-left:800px">
+                    Name  : @Html.TextBox("search")&nbsp<input class="btn btn-primary" type="submit" value="Search" />
+                </p>
+}
+
+<br />
+<div class="MyDiv" id="InfoTableDiv">
+    <table class="table table-bordered table-hover table-hover table-responsive" style="background-color:white" id="Customer">
+        <tbody>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+               
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                   
+                    <td>@Html.ActionLink("ViewCars", "ViewCars", item, new { @class = "btn btn-success fa-info-circle" })</td>
+                    <td>@Html.ActionLink("Edit ", "EditCustomerForm", new { item.Id }, new { @class = "btn btn-primary fa fa-edit" }) </td>
+                    <td>@Html.ActionLink("Delete ", "DeleteCustomer","Home", item, new { @class = "btn btn-danger fa fa-trash" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@*@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#customer .del-key').on('click', function () {
+                var button= $(this)
+                if (confirm("are you sure?")) {
+                   button.parents('tr').remove();
+                }
+            })
+            $('#customer .Add-key').on('click', function () {
+                var button = $(this)
+                button.parents('tr').add()
+
+            })
+
+        })
+    </script>
+    }*@

@@ -1,0 +1,44 @@
+﻿@model  CarServiceMVCProject.ViewModels.SingleCustomerCarViewModel
+@{
+    ViewBag.Title = "NEW CAR";
+}
+
+<h2 style="color:white">New Car</h2>
+
+@using (Html.BeginForm("AddNewCar", "Home"))
+{<div style="color:white">
+     <div class="form-group" >
+         @Html.LabelFor(m => m.GetCar.VIN)
+         @Html.TextBoxFor(m => m.GetCar.VIN, new { @class = "form-control" })
+         @Html.ValidationMessageFor(m => m.GetCar.VIN)
+     </div>
+     <div class="form-group">
+         @Html.LabelFor(m => m.GetCar.Model)
+         @Html.TextBoxFor(m => m.GetCar.Model, new { @class = "form-control" })
+         @Html.ValidationMessageFor(m => m.GetCar.Model)
+        </div>
+     <div class="form-group">
+         @Html.LabelFor(m => m.GetCar.Style)
+         @Html.TextBoxFor(m => m.GetCar.Style, new { @class = "form-control" })
+         @Html.ValidationMessageFor(m => m.GetCar.Style)
+     </div>
+     <div class="form-group">
+         @Html.LabelFor(m => m.GetCar.Company)
+         @Html.TextBoxFor(m => m.GetCar.Company, new { @class = "form-control" })
+         @Html.ValidationMessageFor(m => m.GetCar.Company)
+     </div>
+     <div class="form-group">
+         @Html.LabelFor(m => m.GetCar.Color)
+         @Html.TextBoxFor(m => m.GetCar.Color, new { @class = "form-control" })
+         @Html.ValidationMessageFor(m => m.GetCar.Color)
+     </div>
+    @Html.HiddenFor(m => m.GetCustomer.Id)
+    @Html.HiddenFor(m=> m.GetCustomer.FirstName)
+    @Html.HiddenFor(m=> m.GetCustomer.LastName)
+    @Html.HiddenFor(m=> m.GetCustomer.Email)
+    
+    @Html.ValidationSummary()
+    <button class="btn btn-primary" type="submit">Save</button>
+</div>
+}
+
